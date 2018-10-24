@@ -8,13 +8,14 @@ import numpy
 
 #parameters having fixed values
 class Hp():
-    def __init__(self):
-        self.nb_steps = 1000
-        self.episode_length = 1000
-        self.learning_rate = 0.02
-        self.nb_directions = 16
-        self.nb_best_directions = 16
+    def __init__(self):#used to refer to object inside class
+        self.nb_steps = 1000#number of training loops for updating our perceptron
+        self.episode_length = 1000#max time for the ai
+        self.learning_rate = 0.02#the rate of ai learning
+        self.nb_directions = 16#for getting the reward
+        self.nb_best_directions = 16#for getting the best reward
         assert self.nb_best_directions <= self.nb_directions
-        self.noise = 0.03
-        self.seed = 1
-        self.env_name = ''
+        self.noise = 0.03#standard deviation 
+        self.seed = 1#config of the environment
+        self.env_name = ''#name of environment
+        
