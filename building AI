@@ -45,3 +45,15 @@ class policy():
     def __init__(self,input_size,output_size):
         self.theta = np.zeros((output_size,input_size)) #self.theta is the weight matrix
         #initialising weight matrix to zero
+        
+    def evaluate(self,input,delta=None,direction=None):#delta is the pertubations 
+        if direction is None: #no pertubations added just the input vector given
+            return self.theta.dot(input)
+        elif direction == 'positive':#positive direction
+            return (self.theta+hp.noise*delta).dot(input)#formula for output of action in positive direction
+        else: #opposite direction
+            return (self.theta-hp.noise*delta).dot(input)
+        
+        
+        
+       
