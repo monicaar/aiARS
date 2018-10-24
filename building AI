@@ -52,14 +52,19 @@ class policy():
             return (self.theta+hp.noise*delta).dot(input)#formula for output of action in positive direction
         else: #opposite direction
             return (self.theta-hp.noise*delta).dot(input)
-            
-           
     def sample_deltas(self):
-        return [np.random.randn(*self.theta.shape) for i in range(hp.nb_directions)] #(*self.theta.shape)for getting the dimensions of delta same as theta
-        #this has to be returned in 16 directions which makes it a list using for loop
+        return [np.random.randn(*self.theta.shape) for i in range(hp.nb_directions)] #for getting the dimensions of delta same as theta
+        #this has to be returned in 16 directions which makes it a list
+        #randm method is in numpy library
         
         
+    # updating the matrix with the pertubations
+    #calculating gradient descent
+    def update(self,rollouts,sigma_r):
+        step = np.zeros(self.theta.shape)
+        for r_pos,r_neg,d in rollouts:
+            step += (r_pos-r_neg) * d
+        self.theta += (hp.learning_rate)/(hp.nb_best_directions*sigma_r)*step
         
-    
         
        
