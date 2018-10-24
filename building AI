@@ -45,15 +45,21 @@ class policy():
     def __init__(self,input_size,output_size):
         self.theta = np.zeros((output_size,input_size)) #self.theta is the weight matrix
         #initialising weight matrix to zero
-        
-    def evaluate(self,input,delta=None,direction=None):#delta is the pertubations 
-        if direction is None: #no pertubations added just the input vector given
+    def evaluate(self,input,delta=None,direction=None):
+        if direction is None:
             return self.theta.dot(input)
         elif direction == 'positive':#positive direction
             return (self.theta+hp.noise*delta).dot(input)#formula for output of action in positive direction
         else: #opposite direction
             return (self.theta-hp.noise*delta).dot(input)
+            
+           
+    def sample_deltas(self):
+        return [np.random.randn(*self.theta.shape) for i in range(hp.nb_directions)] #(*self.theta.shape)for getting the dimensions of delta same as theta
+        #this has to be returned in 16 directions which makes it a list using for loop
         
         
+        
+    
         
        
