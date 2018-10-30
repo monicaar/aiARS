@@ -80,8 +80,7 @@ def explore(env,normaliser,policy,directions=None,delta=None):
         sum_rewards+=reward
     return sum_rewards
 
-    
-        
+    #training ai
     
     
         
